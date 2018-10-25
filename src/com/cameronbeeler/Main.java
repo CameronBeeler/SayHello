@@ -4,8 +4,28 @@ public class Main {
 
     public static void main(String[] args)
     {
-        PolitePerson jane = new PolitePerson("Jane");
-        PolitePerson cam = new PolitePerson("Cam");
+        final PolitePerson jane = new PolitePerson("Jane");
+        final PolitePerson cam = new PolitePerson("Cam");
+
+        new Thread(new Runnable()
+        {
+            @Override
+            public
+            void run()
+            {
+                jane.sayHello(cam);
+            }
+        }).start();
+
+        new Thread(new Runnable()
+        {
+            @Override
+            public
+            void run()
+            {
+                cam.sayHello(jane);
+            }
+        }).start();
 
         jane.sayHello(cam);
         cam.sayHello(jane);
